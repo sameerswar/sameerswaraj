@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table Generator</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.box{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    width:320px;
+    max-width:90%;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+/* FIX: row layout for inputs */
+.input-row{
+    display:flex;
+    gap:8px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    outline:none;
+    box-sizing:border-box;
+}
+
+/* make inputs equal width inside row */
+.input-row input{
+    flex:1;
+    margin-top:8px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    border:none;
+    border-radius:8px;
+    background:#4facfe;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#007bff;
+}
+
+.row{
+    background:#f2f8ff;
+    margin-top:6px;
+    padding:10px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.error{
+    color:red;
+    margin-top:8px;
+    font-size:14px;
+}
+
+#result{
+    margin-top:15px;
+    max-height:250px;
+    overflow:auto;
+}
+</style>
+</head>
+
+<body>
+    <script src="../../splash/globalsplash.js"></script>
+  <div id="header-box"></div>
+
+<div class="box">
+
+<h2>📊 Table Generator</h2>
+
+<!-- ✅ FIX: single row inputs -->
+<div class="input-row">
+    <input type="number" id="num" placeholder="Number (e.g. 5)">
+    <input type="number" id="limit" value="10" placeholder="Limit (e.g. 10)">
+</div>
+
+<button onclick="generateTable()">Generate</button>
+
+<div class="error" id="error"></div>
+<div id="result"></div>
+
+</div>
+
+<script>
+function generateTable(){
+
+    let num = Number(document.getElementById("num").value);
+    let limit = Number(document.getElementById("limit").value);
+
+    let error = document.getElementById("error");
+    let result = document.getElementById("result");
+
+    error.innerHTML = "";
+    result.innerHTML = "";
+
+    if(isNaN(num) || isNaN(limit)){
+        error.innerHTML = "Enter valid numbers";
+        return;
+    }
+
+    if(limit < 1){
+        error.innerHTML = "Limit minimum 1 hona chahiye";
+        return;
+    }
+
+    let output = "";
+
+    for(let i=1; i<=limit; i++){
+        output += `<div class="row">${num} × ${i} = ${num*i}</div>`;
+    }
+
+    result.innerHTML = output;
+}
+src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js">
+fetch('/home/universalheader.html')
+.then(res => res.text())
+.then(data=>{
+document.getElementById("header-box").innerHTML=data;
+});
+</script>
+
+</body>
+</html>

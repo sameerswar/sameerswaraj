@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>sameerswaraj.in</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background: linear-gradient(135deg, #4facfe, #00f2fe);
+color:#111;
+}
+
+/* HERO */
+.hero-slider{
+position:relative;
+width:100%;
+height:65vh; /* laptop me fixed height */
+min-height:320px;
+max-height:700px;
+overflow:hidden;
+}
+
+@media(max-width:768px){
+
+.hero-slider{
+height:42vh;
+min-height:260px;
+}
+
+.category-bar{
+width:60%;
+}
+
+.search-box{
+width:34%;
+}
+
+}
+
+@media(min-width:900px){
+
+.hero-slider{
+height:75vh;
+}
+
+.posts-grid{
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+}
+
+}
+
+.hero-slider img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.hero-slider::after{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.08));
+pointer-events:none;
+}
+
+/* HEADER */
+.top-header{
+position:absolute;
+top:10px;
+left:0;
+width:100%;
+z-index:99;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 8px;
+gap:8px;
+}
+
+.header-left{
+display:flex;
+align-items:center;
+gap:7px;
+padding:7px 10px;
+border-radius:24px;
+background:rgba(255,255,255,.14);
+backdrop-filter:blur(8px);
+}
+
+.header-left img{
+width:28px;
+height:28px;
+border-radius:50%;
+}
+
+.header-left span{
+font-size:13px;
+font-weight:700;
+color:#fff;
+}
+
+.header-right{
+display:flex;
+gap:5px;
+}
+
+.header-right a img{
+width:30px;
+height:30px;
+border-radius:20%;
+display:flex;
+justify-content:center;
+align-items:center;
+background:rgba(255,255,255,.14);
+backdrop-filter:blur(8px);
+color:#fff;
+text-decoration:none;
+font-size:13px;
+}
+
+/* CATEGORY BAR OVER HERO */
+.category-bar{
+position:absolute;
+left:8px;
+bottom:16px; /* 👈 same as search-box */
+width:60%;
+z-index:99;
+}
+
+.category-scroll{
+display:flex;
+gap:8px;
+overflow-x:auto;
+scrollbar-width:none;
+}
+
+.category-scroll::-webkit-scrollbar{
+display:none;
+}
+
+.category-scroll button{
+border:none;
+padding:10px 14px;
+border-radius:30px;
+background:rgba(255,255,255,.14);
+backdrop-filter:blur(8px);
+color:#fff;
+white-space:nowrap;
+font-size:13px;
+cursor:pointer;
+}
+
+.category-scroll button.active{
+background:#fff;
+color:#111;
+font-weight:700;
+}
+
+/* SEARCH */
+.search-box{
+position:absolute;
+right:8px;
+bottom:16px;
+width:34%;
+z-index:99;
+}
+
+.search-box input{
+width:100%;
+padding:11px 14px;
+border:none;
+outline:none;
+border-radius:30px;
+background:rgba(255,255,255,.14);
+backdrop-filter:blur(8px);
+color:#fff;
+}
+
+/* CARDS */
+.posts-section{
+padding:14px 8px 30px;
+}
+
+.posts-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.post-card{
+position:relative;
+aspect-ratio:16/9;
+overflow:hidden;
+border-radius:18px;
+cursor:pointer;
+box-shadow:0 10px 20px rgba(0,0,0,.12);
+}
+
+.post-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.post-card::after{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.78),transparent);
+}
+
+.post-card h3{
+position:absolute;
+left:8px;
+right:8px;
+bottom:8px;
+z-index:2;
+color:#fff;
+font-size:13px;
+}
+
+/* DESKTOP */
+@media(min-width:900px){
+.posts-grid{
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+}
+}
+</style>
+</head>
+
+<body>
+  <script type="module" src="auth/auth.js"></script>
+
+<script type="module">
+setTimeout(() => {
+  checkAuth();
+}, 200);
+</script>
+
+<!-- HERO -->
+<div class="hero-slider">
+
+<a id="sliderLink" href="#">
+<img id="sliderImg" src="https://picsum.photos/1600/900?31">
+</a>
+
+<div class="top-header">
+
+<div class="header-left">
+<img src="home/images/sameerswaraj-favicon.png" alt=""><span>sameerswaraj.in</span>
+</div>
+
+<div class="header-right">
+<a href="https://wa.me/91XXXXXXXXXX" target="_blank"> <!--facebook-->
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" />
+    </a>
+
+    <a href="https://youtube.com/@sameerstaltua?si=TMtKU0u3g4FWuV5O" target="_blank"> <!--YouTube-->
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" />
+    </a>
+
+    <a href="https://facebook.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" />
+    </a>
+
+    <a href="https://twitter.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" />
+    </a>
+
+    <a href="https://youtube.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" />
+    </a>
+</div>
+
+</div>
+<!-- CATEGORY BAR (ADD HERE) -->
+<div class="category-bar">
+  <div class="category-scroll" id="categories"></div>
+</div>
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search Tool">
+</div>
+
+</div>
+
+<!-- CARDS -->
+<div class="posts-section">
+<div class="posts-grid" id="postsGrid"></div>
+</div>
+
+<script>
+
+/* SPLASH CHECK */
+if (!sessionStorage.getItem("fromSplash")) {
+
+  sessionStorage.setItem("fromSplash", "true");
+  sessionStorage.setItem("nextPage", window.location.href);
+
+  window.location.replace("splash/index.html");
+}
+
+
+
+/* POSTS DATA */
+const posts = [
+{
+id:"textTool",
+title:"Advanced Text Counter",
+category:"Tools",
+image:"https://picsum.photos/300/170?broker",
+url:"tools/Advance-Word-Counter/Advance-Word-Counter.html"
+},
+{
+id:"MarksCalculator",
+title:"Marks Calculator",
+category:"Math",
+image:"https://picsum.photos/300/170?emi",
+url:"tools/Marks-Calculator/Marks-Calculator.html"
+},
+{
+id:"password",
+title:"Password Generator",
+category:"Security",
+image:"https://picsum.photos/300/170?2",
+url:"tools/Password-generator/Password-generator.html"
+},
+
+{
+id:"table",
+title:"Table Generator",
+category:"Math",
+image:"https://picsum.photos/300/170?3",
+url:"tools/Table-Generator/Table-Generator.html"
+}
+];
+
+/* ELEMENTS */
+const grid = document.getElementById("postsGrid");
+const search = document.getElementById("searchInput");
+const catBox = document.getElementById("categories");
+
+/* CATEGORY LIST */
+const categories = ["All", ...new Set(posts.map(p => p.category))];
+
+let activeCategory = "All";
+
+/* CATEGORY RENDER */
+function renderCategories(){
+
+catBox.innerHTML = "";
+
+categories.forEach(cat => {
+
+let btn = document.createElement("button");
+
+btn.innerText = cat;
+
+if(cat === activeCategory){
+btn.classList.add("active");
+}
+
+btn.onclick = () => {
+
+activeCategory = cat;
+
+renderCategories();
+
+renderPosts();
+
+};
+
+catBox.appendChild(btn);
+
+});
+
+}
+
+/* POSTS RENDER */
+function renderPosts(){
+
+let keyword = search.value.toLowerCase();
+
+let filtered = posts.filter(p => {
+
+let matchSearch =
+p.title.toLowerCase().includes(keyword);
+
+let matchCategory =
+activeCategory === "All" ||
+p.category === activeCategory;
+
+return matchSearch && matchCategory;
+
+});
+
+grid.innerHTML = filtered.map(p => `
+<div class="post-card" onclick="openTool('${p.url}')">
+<img src="${p.image}">
+<h3>${p.title}</h3>
+</div>
+`).join("");
+
+}
+
+/* OPEN TOOL */
+function openTool(url){
+window.location.href = url;
+}
+
+/* SEARCH */
+search.addEventListener("input", renderPosts);
+
+/* SLIDER */
+const heroSlides = [
+{img:"https://picsum.photos/1600/900?31",link:"#"},
+{img:"https://picsum.photos/1600/900?32",link:"#"},
+{img:"https://picsum.photos/1600/900?33",link:"#"}
+];
+
+let i = 0;
+
+setInterval(() => {
+
+i = (i + 1) % heroSlides.length;
+
+document.getElementById("sliderImg").src =
+heroSlides[i].img;
+
+document.getElementById("sliderLink").href =
+heroSlides[i].link;
+
+}, 3000);
+
+/* INIT */
+renderCategories();
+renderPosts();
+
+</script>
+<script>
+window.addEventListener("beforeunload", () => {
+    sessionStorage.removeItem("splashShown");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>sameerswaraj.in</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+height:100vh;
+overflow:hidden;
+background:
+linear-gradient(135deg,#0f172a,#111827,#1e1b4b);
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+/* BACKGROUND GLOW */
+
+body::before{
+content:'';
+position:absolute;
+width:500px;
+height:500px;
+background:#6366f1;
+filter:blur(120px);
+opacity:.35;
+top:-120px;
+left:-120px;
+border-radius:50%;
+animation:float1 8s ease-in-out infinite;
+}
+
+body::after{
+content:'';
+position:absolute;
+width:450px;
+height:450px;
+background:#8b5cf6;
+filter:blur(120px);
+opacity:.25;
+bottom:-120px;
+right:-120px;
+border-radius:50%;
+animation:float2 9s ease-in-out infinite;
+}
+
+@keyframes float1{
+0%,100%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(30px);
+}
+}
+
+@keyframes float2{
+0%,100%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-30px);
+}
+}
+
+/* SPLASH CARD */
+
+.splash-container{
+position:relative;
+z-index:2;
+width:min(92%,420px);
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.12);
+
+border-radius:32px;
+
+padding:38px 28px;
+
+text-align:center;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.35);
+}
+
+/* LOGO */
+
+.logo-wrap{
+width:92px;
+height:92px;
+margin:auto;
+border-radius:28px;
+
+background:
+linear-gradient(135deg,#6366f1,#8b5cf6);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+box-shadow:
+0 15px 35px rgba(99,102,241,.45);
+
+animation:pulse 2s infinite;
+}
+
+.logo-wrap img{
+width:58px;
+height:58px;
+object-fit:contain;
+}
+
+@keyframes pulse{
+0%{
+transform:scale(1);
+}
+50%{
+transform:scale(1.05);
+}
+100%{
+transform:scale(1);
+}
+}
+
+/* TITLE */
+
+h1{
+margin-top:24px;
+font-size:30px;
+font-weight:700;
+color:#fff;
+letter-spacing:.5px;
+}
+
+.subtitle{
+margin-top:10px;
+font-size:14px;
+line-height:1.7;
+color:rgba(255,255,255,.72);
+}
+
+/* LOADER */
+
+.loader{
+margin-top:34px;
+width:100%;
+height:8px;
+border-radius:999px;
+overflow:hidden;
+background:rgba(255,255,255,.12);
+}
+
+.loader-bar{
+height:100%;
+width:0%;
+
+background:
+linear-gradient(90deg,#6366f1,#8b5cf6,#06b6d4);
+
+border-radius:999px;
+
+animation:loading 2.8s ease forwards;
+}
+
+@keyframes loading{
+0%{
+width:0%;
+}
+100%{
+width:100%;
+}
+}
+
+/* STATUS */
+
+.status{
+margin-top:18px;
+font-size:13px;
+font-weight:500;
+color:#cbd5e1;
+letter-spacing:.4px;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:28px;
+font-size:12px;
+color:rgba(255,255,255,.45);
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+.splash-container{
+padding:34px 22px;
+border-radius:28px;
+}
+
+h1{
+font-size:26px;
+}
+
+.subtitle{
+font-size:13px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="splash-container">
+
+<div class="logo-wrap">
+
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhXj0ZBI8Zj8ORNlOOco79CChDFRQuRIP6BaYKhHo37m6l7UBdzUEt2kcuhMlI6iDK1_JDTmOwWyUOg_sG6bK1oLY80ltNKIip8AVbqB-XiJlg6NzMxK2NjnLqxGcA_ClIu1IkWvtT0jodualgLAqofVBqlTi_-Vanu9GldpqkpDUsxg/s1600/1993.png">
+
+</div>
+
+<h1>sameerswaraj.in</h1>
+
+<div class="subtitle">
+Modern tools platform with premium utilities,<br>
+smart calculators & advanced web apps.
+</div>
+
+<div class="loader">
+<div class="loader-bar"></div>
+</div>
+
+<div class="status">
+Loading Experience...
+</div>
+
+<div class="footer">
+© 2026 sameerswaraj.in
+</div>
+
+</div>
+
+
+
+<script>
+
+setTimeout(() => {
+
+    let nextPage =
+    sessionStorage.getItem("nextPage");
+
+    // fallback
+    if (!nextPage) {
+        nextPage = "../index.html";
+    }
+
+    // redirect back
+    window.location.replace(nextPage);
+
+}, 2800);
+
+</script>
+
+
+
+</body>
+</html>

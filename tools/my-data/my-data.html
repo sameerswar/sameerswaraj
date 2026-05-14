@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Protected Google Sheet</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter, Arial, sans-serif;
+    }
+
+    body{
+      background:#f1f3f4;
+      overflow:hidden;
+    }
+
+    /* LOGIN SCREEN */
+
+    .login-screen{
+      width:100%;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:
+      linear-gradient(135deg,#0f9d58,#34a853);
+      padding:20px;
+    }
+
+    .login-box{
+      width:100%;
+      max-width:420px;
+      background:#fff;
+      border-radius:24px;
+      padding:40px 30px;
+      box-shadow:
+      0 10px 40px rgba(0,0,0,0.2);
+      text-align:center;
+    }
+
+    .logo{
+      width:80px;
+      height:80px;
+      background:#0f9d58;
+      border-radius:20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+      font-size:34px;
+      font-weight:bold;
+      margin:auto;
+      margin-bottom:20px;
+    }
+
+    h1{
+      font-size:28px;
+      color:#202124;
+      margin-bottom:10px;
+    }
+
+    p{
+      color:#5f6368;
+      margin-bottom:25px;
+      font-size:15px;
+    }
+
+    input{
+      width:100%;
+      height:54px;
+      border:1px solid #dadce0;
+      border-radius:12px;
+      padding:0 16px;
+      font-size:16px;
+      margin-bottom:15px;
+      outline:none;
+      transition:0.3s;
+    }
+
+    input:focus{
+      border-color:#0f9d58;
+      box-shadow:0 0 0 4px rgba(15,157,88,0.15);
+    }
+
+    button{
+      width:100%;
+      height:54px;
+      border:none;
+      border-radius:12px;
+      background:#0f9d58;
+      color:white;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#0b8043;
+    }
+
+    .error{
+      margin-top:15px;
+      color:red;
+      display:none;
+      font-size:14px;
+    }
+
+    /* SHEET */
+
+    .sheet-container{
+      display:none;
+      width:100%;
+      height:100vh;
+      background:white;
+    }
+
+    iframe{
+      width:100%;
+      height:100%;
+      border:none;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .login-box{
+        padding:30px 20px;
+      }
+
+      h1{
+        font-size:24px;
+      }
+
+      p{
+        font-size:14px;
+      }
+
+      input,
+      button{
+        height:50px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  
+  
+  <script src="../../splash/globalsplash.js"></script>
+  <div id="header-box"></div>
+
+  <!-- LOGIN -->
+
+  <div class="login-screen" id="loginScreen">
+
+    <div class="login-box">
+
+      <div class="logo">S</div>
+
+      <h1>Secure Sheet Access</h1>
+
+      <p>
+        Enter password to open the spreadsheet
+      </p>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter Password"
+      />
+
+      <button onclick="checkPassword()">
+        Unlock Sheet
+      </button>
+
+      <div class="error" id="error">
+        Incorrect Password
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SHEET -->
+
+  <div class="sheet-container" id="sheetContainer">
+
+    <iframe
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQKV22M53LXUv4pubZbgkkz1Sx0y7ADy_SFOlcj0pcicZNcAa1TUvHPeGp80Ng7RfXGgI5RWO_J9cy-/pubhtml?gid=0&single=true"
+      allowfullscreen>
+    </iframe>
+
+  </div>
+
+  <script>
+
+    /*
+    ===========================
+      CHANGE PASSWORD HERE
+    ===========================
+    */
+
+    const correctPassword = "2w2w";
+
+    /*
+    ===========================
+    */
+
+    function checkPassword(){
+
+      const enteredPassword =
+      document.getElementById("password").value;
+
+      if(enteredPassword === correctPassword){
+
+        document.getElementById("loginScreen")
+        .style.display = "none";
+
+        document.getElementById("sheetContainer")
+        .style.display = "block";
+
+      } else {
+
+        document.getElementById("error")
+        .style.display = "block";
+
+      }
+    }
+
+
+    //universal header
+
+fetch('/home/universalheader.html')
+.then(res => res.text())
+.then(data=>{
+document.getElementById("header-box").innerHTML=data;
+});
+//universal header
+  </script>
+
+</body>
+</html>

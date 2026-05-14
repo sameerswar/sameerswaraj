@@ -1,0 +1,198 @@
+<script type="module" src="../auth/auth.js"></script>
+
+<script type="module">
+
+checkAuth();
+
+</script>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+.top-header{
+position:absolute;
+top:10px;
+left:0;
+width:100%;
+z-index:999;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:0 10px;
+}
+
+/* LEFT SIDE FULL LEFT */
+.header-left{
+display:flex;
+align-items:center;
+gap:8px;
+
+padding:6px 10px;
+border-radius:30px;
+
+background:rgba(255,255,255,.10);
+backdrop-filter:blur(8px);
+-webkit-backdrop-filter:blur(8px);
+}
+
+.header-left img{
+width:34px;
+height:34px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.header-left span{
+font-size:14px;
+font-weight:700;
+color:#fff;
+white-space:nowrap;
+}
+
+/* RIGHT SIDE FULL RIGHT */
+.header-right{
+display:flex;
+align-items:center;
+gap:6px;
+margin-left:auto;
+}
+
+.header-right a{
+width:34px;
+height:34px;
+border-radius:10px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:rgba(255,255,255,.10);
+backdrop-filter:blur(8px);
+-webkit-backdrop-filter:blur(8px);
+
+transition:.25s ease;
+}
+
+.header-right a:hover{
+transform:translateY(-2px);
+background:rgba(255,255,255,.18);
+}
+
+.header-right img{
+width:18px;
+height:18px;
+object-fit:contain;
+}
+
+/* TABLET */
+@media(max-width:768px){
+
+.top-header{
+padding:0 8px;
+}
+
+.header-left{
+padding:5px 8px;
+gap:6px;
+}
+
+.header-left img{
+width:30px;
+height:30px;
+}
+
+.header-left span{
+font-size:13px;
+}
+
+.header-right a{
+width:30px;
+height:30px;
+}
+
+.header-right img{
+width:16px;
+height:16px;
+}
+
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+.top-header{
+top:8px;
+padding:0 6px;
+}
+
+.header-left{
+padding:4px 7px;
+gap:5px;
+}
+
+.header-left img{
+width:27px;
+height:27px;
+}
+
+.header-left span{
+font-size:12px;
+max-width:95px;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.header-right{
+gap:4px;
+}
+
+.header-right a{
+width:27px;
+height:27px;
+border-radius:8px;
+}
+
+.header-right img{
+width:14px;
+height:14px;
+}
+
+}
+</style>
+
+<div class="top-header">
+
+<div class="header-left">
+<img src="../home/images/sameerswaraj-favicon.png">
+<span>sameerswaraj</span>
+</div>
+
+<div class="header-right">
+
+<a href="https://wa.me/91XXXXXXXXXX" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+</a>
+
+<a href="https://youtube.com/@sameerstaltua" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+</a>
+
+<a href="https://facebook.com" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+</a>
+
+<a href="https://twitter.com" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733579.png">
+</a>
+
+<a href="https://instagram.com" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+</a>
+
+</div>
+</div>

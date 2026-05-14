@@ -1,0 +1,191 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8"></meta>
+  <title>Marks Calculator</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      width: 100%;
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+      display: block;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    label {
+      font-size: 14px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #4facfe;
+      box-shadow: 0 0 5px rgba(79,172,254,0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #4facfe;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00c6ff;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    
+  </style>
+</head>
+<body>
+  <script src="../../splash/globalsplash.js"></script>
+  <div id="header-box"></div>
+
+  <div class="container">
+    <h1>📊 Marks Calculator</h1>
+
+    <div class="input-group">
+      <label>Total Marks</label>
+      <input id="total" placeholder="Enter total marks" type="number" />
+    </div>
+
+    <div class="input-group">
+      <label>Obtained Marks</label>
+      <input id="obtainedMarks" placeholder="Enter obtained marks" type="number" />
+    </div>
+    <p>OR</p>
+
+    <div class="input-group">
+      <label>Obtained Percentage</label>
+      <input id="obtainedPercent" placeholder="Enter obtained Percentage" type="number" />
+    </div>
+
+    <button onclick="calculatePercentage()">Calculate</button>
+
+    <div class="result" id="result"></div>
+    <div class="error" id="error"></div>
+  </div>
+
+  <script>
+    function calculatePercentage() {
+      const total = document.getElementById("total").value;
+      const obtainedMarks = document.getElementById("obtainedMarks").value;
+      const obtainedPercent = document.getElementById("obtainedPercent").value;
+
+      const result = document.getElementById("result");
+      const error = document.getElementById("error");
+
+      result.innerText = "";
+      error.innerText = "";
+
+      if (total === "") {
+        error.innerText = "Please enter total marks!";
+        return;
+      }
+
+      if (total <= 0) {
+        error.innerText = "Total marks must be greater than 0!";
+        return;
+      }
+
+      // CASE 1: Marks → Percentage
+      if (obtainedMarks !== "" && obtainedPercent === "") {
+        if (obtainedMarks > total) {
+          error.innerText = "Obtained marks can't be greater than total!";
+          return;
+        }
+
+        const percentage = (obtainedMarks / total) * 100;
+        result.innerText = `Your Percentage: ${percentage.toFixed(2)}%`;
+        return;
+      }
+
+      // CASE 2: Percentage → Marks
+      if (obtainedPercent !== "" && obtainedMarks === "") {
+        if (obtainedPercent > 100) {
+          error.innerText = "Percentage can't be more than 100!";
+          return;
+        }
+
+        const marks = (obtainedPercent / 100) * total;
+        result.innerText = `Your Obtained Marks: ${marks.toFixed(2)}`;
+        return;
+      }
+
+      // ERROR CASE
+      error.innerText = "Enter either marks OR percentage (not both)";
+    }
+    //universal header
+
+fetch('/home/universalheader.html')
+.then(res => res.text())
+.then(data=>{
+document.getElementById("header-box").innerHTML=data;
+});
+  </script>
+
+</body>
+</html>
