@@ -10,13 +10,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAvu--M7QJEV4_zxfd2cGaDOQdeQRV1Y1w",
-  authDomain: "sameerswaraj.in",
-  projectId: "sameerswaraj-7a059",
-  storageBucket: "sameerswaraj-7a059.firebasestorage.app",
-  messagingSenderId: "401397860957",
-  appId: "1:401397860957:web:83e08e8198ccf19a58dbb4",
-  measurementId: "G-0YD08B11SD"
+  apiKey: "AIzaSyDm_EihRX8X3P6TIch0x9Q9whd-qS703lQ",
+  authDomain: "sameerswaraj-6d046.firebaseapp.com",
+  projectId: "sameerswaraj-6d046",
+  storageBucket: "sameerswaraj-6d046.firebasestorage.app",
+  messagingSenderId: "636602640511",
+  appId: "1:636602640511:web:0fa6b3e476c9dc8a40374a",
+  measurementId: "G-T9WSS531ZF"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -24,6 +24,7 @@ getAnalytics(app);
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+
 const siteRoot = new URL("../", import.meta.url);
 const authPage = new URL("auth/auth.html", siteRoot).href;
 const homePage = new URL("index.html", siteRoot).href;
