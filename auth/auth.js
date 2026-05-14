@@ -10,13 +10,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDm_EihRX8X3P6TIch0x9Q9whd-qS703lQ",
-  authDomain: "sameerswaraj-6d046.firebaseapp.com",
-  projectId: "sameerswaraj-6d046",
-  storageBucket: "sameerswaraj-6d046.firebasestorage.app",
-  messagingSenderId: "636602640511",
-  appId: "1:636602640511:web:0fa6b3e476c9dc8a40374a",
-  measurementId: "G-T9WSS531ZF"
+  apiKey: "AIzaSyAvDXrQwOOZx1AAytPB-epP480aXIoEHgQ",
+  authDomain: "sameerswaraj-bd0fa.firebaseapp.com",
+  projectId: "sameerswaraj-bd0fa",
+  storageBucket: "sameerswaraj-bd0fa.firebasestorage.app",
+  messagingSenderId: "85687758148",
+  appId: "1:85687758148:web:73ecf765b6d595aed73b11",
+  measurementId: "G-62E66QHXS2"
 };
 
 const app = initializeApp(firebaseConfig);
