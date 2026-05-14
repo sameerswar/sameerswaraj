@@ -3,7 +3,7 @@ const siteRoot = new URL("../", import.meta.url);
 const homePage = new URL("index.html", siteRoot).href;
 
 // 🔴 IMPORTANT: yahan apna Google OAuth Client ID daalo
-const clientId = "YOUR_GOOGLE_CLIENT_ID";
+const clientId = "549064586468-9v0ctirunkuqvolghu49bt70jimtcjq7.apps.googleusercontent.com";
 
 // ===== INIT GOOGLE GIS =====
 window.onload = () => {
