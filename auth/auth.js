@@ -1,54 +1,56 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
-
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAvDXrQwOOZx1AAytPB-epP480aXIoEHgQ",
-  authDomain: "sameerswaraj-bd0fa.firebaseapp.com",
-  projectId: "sameerswaraj-bd0fa",
-  storageBucket: "sameerswaraj-bd0fa.firebasestorage.app",
-  messagingSenderId: "85687758148",
-  appId: "1:85687758148:web:73ecf765b6d595aed73b11",
-  measurementId: "G-62E66QHXS2"
-};
-
-const app = initializeApp(firebaseConfig);
-getAnalytics(app);
-
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-
+// ===== HOME PAGE =====
 const siteRoot = new URL("../", import.meta.url);
-const authPage = new URL("auth/auth.html", siteRoot).href;
 const homePage = new URL("index.html", siteRoot).href;
 
+// 🔴 IMPORTANT: yahan apna Google OAuth Client ID daalo
+const clientId = "YOUR_GOOGLE_CLIENT_ID";
+
+// ===== INIT GOOGLE GIS =====
+window.onload = () => {
+  google.accounts.id.initialize({
+    client_id: clientId,
+    callback: handleCredentialResponse,
+  });
+};
+
+// ===== LOGIN BUTTON CLICK =====
 window.loginGoogle = () => {
-  signInWithPopup(auth, provider)
-    .then(() => {
-      const nextPage = sessionStorage.getItem("nextPage") || homePage;
-      window.location.href = nextPage;
-    })
-    .catch(err => alert(err.message));
+  google.accounts.id.prompt(); // Google account chooser open
 };
 
-window.checkAuth = () => {
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      sessionStorage.setItem("nextPage", window.location.href);
-      window.location.href = authPage;
-    }
-  });
+// ===== LOGIN SUCCESS CALLBACK =====
+function handleCredentialResponse(response) {
+  try {
+    const user = parseJwt(response.credential);
+
+    console.log("Logged in user:", user);
+
+    // save user in session
+    sessionStorage.setItem("user", JSON.stringify(user));
+
+    // redirect to home
+    window.location.href = homePage;
+
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Login failed");
+  }
+}
+
+// ===== JWT DECODE FUNCTION =====
+function parseJwt(token) {
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  return JSON.parse(atob(base64));
+}
+
+// ===== GET CURRENT USER (optional helper) =====
+window.getCurrentUser = () => {
+  return JSON.parse(sessionStorage.getItem("user"));
 };
 
+// ===== LOGOUT =====
 window.logoutUser = () => {
-  signOut(auth).then(() => {
-    window.location.href = authPage;
-  });
+  sessionStorage.removeItem("user");
+  window.location.href = "auth/auth.html";
 };
